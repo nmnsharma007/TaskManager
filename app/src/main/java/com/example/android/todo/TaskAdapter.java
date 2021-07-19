@@ -66,7 +66,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     }
 
     // return the total count of items in the list
-
     @Override
     public int getItemCount() {
         return mTasks.size();

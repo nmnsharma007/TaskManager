@@ -43,5 +43,9 @@ public interface TaskDao {
     )
     public LiveData<List<Task>> loadAllTasks();
 
+    /**
+     * Delete the whole table
+     */
+    @Query("DELETE FROM tasks")
+    void deleteAll();
 }
-// Android Notes

@@ -2,9 +2,11 @@ package com.example.android.todo;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -30,10 +32,25 @@ public abstract class TaskRoomDatabase extends RoomDatabase {
                 if(INSTANCE == null){
                     // create a singleton database instance to be used globally
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            TaskRoomDatabase.class,"task_database").build();
+                            TaskRoomDatabase.class,"task_database")
+                            .addCallback(sRoomDatabaseCallback)
+                            .build();
                 }
             }
         }
         return INSTANCE;
     }
+
+    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            databaseWriteExecutor.execute(() -> {
+                TaskDao taskDao = INSTANCE.taskDao();
+                taskDao.deleteAll();
+                Task task = new Task("Enjoy Life",false);
+                taskDao.insertTask(task);
+            });
+        }
+    };
 }

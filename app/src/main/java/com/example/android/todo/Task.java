@@ -24,6 +24,19 @@ public class Task {
     @NonNull @ColumnInfo(name = "status")
     private boolean status;
 
+    public Task(@NonNull String title,@NonNull boolean status){
+        this.title = title;
+        this.status = status;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -36,7 +49,7 @@ public class Task {
         this.title = title;
     }
 
-    public void setDescription(@NonNull boolean status){
+    public void setStatus(@NonNull boolean status){
         this.status = status;
     }
 
