@@ -44,3 +44,4 @@ public interface TaskDao {
     public LiveData<List<Task>> loadAllTasks();
 
 }
+// Android Notes

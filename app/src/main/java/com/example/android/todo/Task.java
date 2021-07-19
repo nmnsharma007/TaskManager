@@ -22,13 +22,13 @@ public class Task {
 
     // status of task
     @NonNull @ColumnInfo(name = "status")
-    private String status;
+    private boolean status;
 
     public String getTitle() {
         return title;
     }
 
-    public String getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
@@ -36,7 +36,7 @@ public class Task {
         this.title = title;
     }
 
-    public void setDescription(@NonNull String status){
+    public void setDescription(@NonNull boolean status){
         this.status = status;
     }
 

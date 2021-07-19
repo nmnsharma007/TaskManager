@@ -25,5 +25,6 @@ public class ItemsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 }
