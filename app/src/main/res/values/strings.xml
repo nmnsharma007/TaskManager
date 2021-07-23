@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Todo</string>
+    <string name="package_name">com.example.android.todo.</string>
 </resources>
