@@ -13,7 +13,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "tasks")
 public class Task {
     // id which is a primary key
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = true) @ColumnInfo (name = "id")
     private int id;
 
     // title of a task item

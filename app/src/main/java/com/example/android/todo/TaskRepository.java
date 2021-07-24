@@ -23,15 +23,21 @@ public class TaskRepository {
         return mAllTasks;
     }
 
-    void insert(Task task){
+    public void insert(Task task){
         TaskRoomDatabase.databaseWriteExecutor.execute(() -> mTaskDao.insertTask(task));
     }
 
-    void update(Task task){
+    public void update(Task task){
         TaskRoomDatabase.databaseWriteExecutor.execute(() -> mTaskDao.updateTask(task));
     }
 
-    void delete(Task task){
+    public void delete(Task task){
         TaskRoomDatabase.databaseWriteExecutor.execute(()-> mTaskDao.deleteTask(task));
+    }
+
+    public Task getTaskInfo(int id) {
+        final Task[] task = {null};
+        TaskRoomDatabase.databaseWriteExecutor.execute(() -> task[0] = mTaskDao.getTaskInfo(id));
+        return task[0];
     }
 }

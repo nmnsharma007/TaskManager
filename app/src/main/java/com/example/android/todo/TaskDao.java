@@ -35,7 +35,7 @@ public interface TaskDao {
     public void updateTask(Task task);
 
     /**
-     * query the whole table an
+     * query the whole table
      * @return
      */
     @Query(
@@ -44,8 +44,14 @@ public interface TaskDao {
     public LiveData<List<Task>> loadAllTasks();
 
     /**
-     * Delete the whole table
+     * get the information regarding a particular task in the table
+     * @param id the id to be searched
+     * @return the task
      */
-    @Query("DELETE FROM tasks")
-    void deleteAll();
+
+    @Query(
+            "SELECT * FROM tasks WHERE id == :id"
+    )
+    public Task getTaskInfo(int id);
+
 }

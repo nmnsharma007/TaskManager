@@ -20,7 +20,7 @@ public abstract class TaskRoomDatabase extends RoomDatabase {
     // declare the singleton instance of the class as volatile
     private static volatile TaskRoomDatabase INSTANCE;
 
-    // using multithreading to fetch the database so that the UI doesn't freeze
+    // using different thread to fetch the database so that the UI doesn't freeze
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
@@ -47,10 +47,11 @@ public abstract class TaskRoomDatabase extends RoomDatabase {
             super.onCreate(db);
             databaseWriteExecutor.execute(() -> {
                 TaskDao taskDao = INSTANCE.taskDao();
-                taskDao.deleteAll();
                 Task task = new Task("Enjoy Life",false);
                 taskDao.insertTask(task);
             });
         }
     };
+
+
 }
