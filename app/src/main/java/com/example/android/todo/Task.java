@@ -10,41 +10,46 @@ import androidx.room.PrimaryKey;
  * Each instance of the item task represents a row in the task table
  */
 
-@Entity
+@Entity(tableName = "tasks")
 public class Task {
     // id which is a primary key
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true) @ColumnInfo (name = "id")
     private int id;
 
     // title of a task item
-    @NonNull @ColumnInfo
+    @NonNull @ColumnInfo(name = "title")
     private String title;
 
     // status of task
-    @NonNull @ColumnInfo
-    private String status;
+    @NonNull @ColumnInfo(name = "status")
+    private boolean status;
+
+    public Task(@NonNull String title,@NonNull boolean status){
+        this.title = title;
+        this.status = status;
+    }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setTodoId(int id) {
-        this.id = id;
-    }
-
-    public void setTitle(String title) {
+    public void setTitle(@NonNull String title) {
         this.title = title;
     }
 
-    public void setDescription(String status){
+    public void setStatus(@NonNull boolean status){
         this.status = status;
     }
 
