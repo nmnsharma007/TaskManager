@@ -16,6 +16,8 @@ import java.util.List;
 // we specify the custom ViewHolder which gives access to our views
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
+    private OnItemClickListener clickListener;
+
     // store a member variable for the contacts
     private List<Task> mTasks;
     // Pass in the tasks list into the constructor
@@ -33,11 +35,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         // Create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
         public ViewHolder (View view){
-            // stores the itemView in a public final member variable that can be used
+            // stores the view in a public final member variable that can be used
             // to access the context from any ViewHolder instance
             super(view);
             titleTextView = view.findViewById(R.id.task_title);
             statusTextView = view.findViewById(R.id.task_status);
+            view.setOnClickListener(v -> {
+                if(clickListener != null){
+                    clickListener.onClick(v,getAbsoluteAdapterPosition());
+                }
+            });
         }
     }
 
@@ -69,5 +76,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return mTasks.size();
+    }
+
+    public void setClickListener(OnItemClickListener itemClickListener) {
+        this.clickListener = itemClickListener;
     }
 }

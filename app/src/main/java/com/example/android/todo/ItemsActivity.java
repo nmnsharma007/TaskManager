@@ -47,6 +47,15 @@ public class ItemsActivity extends AppCompatActivity {
 
     private void setUpRecyclerView(List<Task> tasks) {
         final TaskAdapter taskAdapter = new TaskAdapter(tasks);
+        taskAdapter.setClickListener(new OnItemClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent = new Intent(ItemsActivity.this, EditorActivity.class);
+                intent.putExtra(getString(R.string.package_name)+"id"
+                        ,tasks.get(position).getId());
+                startActivity(intent);
+            }
+        });
         mRecyclerView.setAdapter(taskAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

@@ -21,7 +21,7 @@ public interface TaskDao {
     public void insertTask(Task task);
 
     /**
-     * delete the task from the table
+     * delete the task from the table with the given id
      * @param task
      */
     @Delete

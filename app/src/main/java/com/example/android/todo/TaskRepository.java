@@ -36,8 +36,6 @@ public class TaskRepository {
     }
 
     public Task getTaskInfo(int id) {
-        final Task[] task = {null};
-        TaskRoomDatabase.databaseWriteExecutor.execute(() -> task[0] = mTaskDao.getTaskInfo(id));
-        return task[0];
+        return mTaskDao.getTaskInfo(id);
     }
 }
