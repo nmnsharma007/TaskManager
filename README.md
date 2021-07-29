@@ -11,4 +11,4 @@ operations on the database are performed on a background thread so that the UI d
 pattern was used since only one instance of the database is needed to coordinate actions across the App.
 The App also uses ViewModel so that database request is not made again when the device configuration 
 changes like rotation of the screen. It also uses LiveData to track the changes in the database so that
-whenever the database changes, the list of tasks displayed is updated again.
+whenever the database changes, the list of tasks displayed is updated.
